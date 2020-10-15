@@ -16,16 +16,115 @@ class RowsExampleViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        URLRow.defaultCellUpdate = { cell, row in cell.textField.textColor = .systemBlue }
-        LabelRow.defaultCellUpdate = { cell, row in cell.detailTextLabel?.textColor = .systemOrange  }
-        CheckRow.defaultCellSetup = { cell, row in cell.tintColor = .systemOrange }
-        DateRow.defaultRowInitializer = { row in row.minimumDate = Date() }
+        tableView.rowHeight = 63
+
+        URLRow.defaultCellUpdate = { cell, row in
+            cell.textField.textColor = .red
+        }
+        LabelRow.defaultCellUpdate = { cell, row in
+            cell.detailTextLabel?.textColor = .red
+        }
+        TextRow.defaultCellSetup = { cell, row in
+        }
+        DateRow.defaultRowInitializer = { row in
+            row.minimumDate = Date()
+        }
 
         form +++
 
-            Section()
+            Section(){ section in
+                section.header = {
+                      var header = HeaderFooterView<UIView>(.callback({
+                            let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 51))
+                            let sectionLabel = UILabel()
+                            sectionLabel.text = "联系人"
+                            sectionLabel.textColor = UIColor.gray
+                            sectionLabel.font = UIFont.systemFont(ofSize: 14)
+                            sectionLabel.frame = CGRect(x: 16, y: 20, width: 120, height: 30)
+                            view.addSubview(sectionLabel)
+                            return view
+                      }))
+                      header.height = { 51 }
+                      return header
+                    }()
+            }
+
+            <<< TextRow() {
+                $0.position = .first
+                $0.title = "联系人"
+                $0.placeholder = "请输入"
+            }.onChange { [weak form] in
+                if $0.value == "true" {
+
+                }
+                else {
+
+                }
+            }
+
+            <<< TestRow() {
+                $0.position = .first
+                $0.value = "哈哈哈哈"
+            }
+
+            <<< DecimalRow() {
+                $0.title = "DecimalRow"
+                $0.value = 5
+                $0.formatter = DecimalFormatter()
+                $0.useFormatterDuringInput = true
+                $0.useFormatterOnDidBeginEditing = true
+            }.cellSetup { cell, _  in
+                cell.textField.keyboardType = .numberPad
+            }
+
+            <<< URLRow() {
+                $0.title = "URLRow"
+                $0.value = URL(string: "http://xmartlabs.com")
+            }
+
+            <<< PhoneRow() {
+                $0.title = "PhoneRow (disabled)"
+                $0.value = "+598 9898983510"
+                $0.disabled = true
+            }
+
+            <<< NameRow() {
+                $0.title =  "姓名"
+                $0.placeholder = "请输入"
+            }
+
+            <<< PasswordRow() {
+                $0.title = "PasswordRow"
+                $0.value = "password"
+            }
+
+            <<< IntRow() {
+                $0.title = "IntRow"
+                $0.value = 2015
+            }
+
+            <<< EmailRow() {
+                $0.title = "EmailRow"
+                $0.value = "a@b.com"
+            }
+
+            <<< TwitterRow() {
+                $0.title = "TwitterRow"
+                $0.value = "@xmartlabs"
+            }
+
+            <<< AccountRow() {
+                $0.title = "AccountRow"
+                $0.placeholder = "Placeholder"
+            }
+
+            <<< ZipCodeRow() {
+                $0.title = "ZipCodeRow"
+                $0.placeholder = "90210"
+            }
 
             <<< LabelRow () {
+                $0.position = .last
                 $0.title = "LabelRow"
                 $0.value = "tap the row"
                 }
@@ -34,10 +133,12 @@ class RowsExampleViewController: FormViewController {
                     row.reload() // or row.updateCell()
             }
 
+            +++ Section("SegmentedRow examples")
+
             <<< DateRow() { $0.value = Date(); $0.title = "DateRow" }
 
             <<< CountDownInlineRow() { $0.value = Date(); $0.title = "CountDownInlineRow" }
-            
+
             <<< CheckRow() {
                 $0.title = "CheckRow"
                 $0.value = true
@@ -57,12 +158,13 @@ class RowsExampleViewController: FormViewController {
             }
 
             <<< StepperRow() {
+                $0.position = .last
                 $0.title = "StepperRow"
                 $0.value = 1.0
               }.cellSetup({ (cell, row) in
                 cell.imageView?.image = #imageLiteral(resourceName: "selectedRectangle")
               })
-          
+
 
             +++ Section("SegmentedRow examples")
 
@@ -276,7 +378,7 @@ class RowsExampleViewController: FormViewController {
                 }
                 $0.value = $0.options.first
             }
-            
+
             <<< DoublePickerInlineRow<String, Int>() {
                 $0.title = "2 Component picker"
                 $0.firstOptions = { return ["a", "b", "c"]}
@@ -288,68 +390,6 @@ class RowsExampleViewController: FormViewController {
                 $0.thirdOptions = { _,_ in return [1, 2, 3]}
                 $0.title = "3 Component picker"
             }
-
-            +++ Section("FieldRow examples")
-
-            <<< TextRow() {
-                $0.title = "TextRow"
-                $0.placeholder = "Placeholder"
-            }
-
-            <<< DecimalRow() {
-                $0.title = "DecimalRow"
-                $0.value = 5
-                $0.formatter = DecimalFormatter()
-                $0.useFormatterDuringInput = true
-                //$0.useFormatterOnDidBeginEditing = true
-                }.cellSetup { cell, _  in
-                    cell.textField.keyboardType = .numberPad
-            }
-
-            <<< URLRow() {
-                $0.title = "URLRow"
-                $0.value = URL(string: "http://xmartlabs.com")
-            }
-
-            <<< PhoneRow() {
-                $0.title = "PhoneRow (disabled)"
-                $0.value = "+598 9898983510"
-                $0.disabled = true
-            }
-
-            <<< NameRow() {
-                $0.title =  "NameRow"
-            }
-
-            <<< PasswordRow() {
-                $0.title = "PasswordRow"
-                $0.value = "password"
-            }
-
-            <<< IntRow() {
-                $0.title = "IntRow"
-                $0.value = 2015
-            }
-
-            <<< EmailRow() {
-                $0.title = "EmailRow"
-                $0.value = "a@b.com"
-            }
-
-            <<< TwitterRow() {
-                $0.title = "TwitterRow"
-                $0.value = "@xmartlabs"
-            }
-
-            <<< AccountRow() {
-                $0.title = "AccountRow"
-                $0.placeholder = "Placeholder"
-            }
-
-            <<< ZipCodeRow() {
-                $0.title = "ZipCodeRow"
-                $0.placeholder = "90210"
-        }
 
     }
 

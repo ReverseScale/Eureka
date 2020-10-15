@@ -136,6 +136,10 @@ open class RowOf<T>: BaseRow where T: Equatable {
 /// Generic class that represents an Eureka row.
 open class Row<Cell: CellType>: RowOf<Cell.Value>, TypedRowType where Cell: BaseCell {
 
+    open var position: Position = .middle
+
+    open var isHiddenLine: Bool = false
+
     /// Responsible for creating the cell for this row.
     public var cellProvider = CellProvider<Cell>()
 
@@ -198,6 +202,9 @@ open class Row<Cell: CellType>: RowOf<Cell.Value>, TypedRowType where Cell: Base
     /**
      Will be called inside `updateCell` method of the row. Can be used to customize reloading a row from its definition.
      */
-    open func customUpdateCell() {}
+    open func customUpdateCell() {
+        cell.position = position
+        cell.isHiddenLine = isHiddenLine
+    }
 
 }

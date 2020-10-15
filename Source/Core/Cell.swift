@@ -25,8 +25,52 @@
 import Foundation
 import UIKit
 
+public enum Position {
+    case solo
+    case first
+    case middle
+    case last
+}
+
 /// Base class for the Eureka cells
 open class BaseCell: UITableViewCell, BaseCellType {
+
+    var position: Position = .middle
+
+    var lineView = UIView()
+
+    var isHiddenLine: Bool = false
+
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        adjustMyFrame()
+        setCorners()
+        setLineView()
+    }
+
+    func setCorners() {
+        let cornerRadius: CGFloat = 8.0
+        switch position {
+        case .solo: roundCorners(corners: .allCorners, radius: cornerRadius)
+        case .first: roundCorners(corners: [.topLeft, .topRight], radius: cornerRadius)
+        case .last: roundCorners(corners: [.bottomLeft, .bottomRight], radius: cornerRadius)
+        default: noCornerMask()
+        }
+    }
+
+    func adjustMyFrame() {
+        guard let widthSuper = superview?.frame.width else {
+            return
+        }
+        frame = CGRect(x: 12, y: frame.minY, width: widthSuper - 24, height: frame.height)
+    }
+
+    func setLineView() {
+        addSubview(lineView)
+        lineView.backgroundColor = UIColor(red: 235/255, green: 237/255, blue: 242/255, alpha: 1)
+        lineView.isHidden = isHiddenLine
+        lineView.frame = CGRect(x: 0, y: frame.height - 1, width: frame.width, height: 1)
+    }
 
     /// Untyped row associated to this cell.
     public var baseRow: BaseRow! { return nil }
@@ -171,3 +215,16 @@ open class Cell<T>: BaseCell, TypedCellType where T: Equatable {
     /// The untyped row associated to this cell.
     public override var baseRow: BaseRow! { return row }
 }
+
+extension UIView {
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+    func noCornerMask() {
+        layer.mask = nil
+    }
+}
+

@@ -32,9 +32,12 @@ class HomeViewController : FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.rowHeight = 63
+
         ImageRow.defaultCellUpdate = { cell, row in
-           cell.accessoryView?.layer.cornerRadius = 17
-           cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+            cell.accessoryView?.layer.cornerRadius = 17
+            cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+            cell.contentView.layoutMargins.left = 20
         }
 
         form +++
@@ -46,6 +49,7 @@ class HomeViewController : FormViewController {
                 <<< ButtonRow("Rows") {
                         $0.title = $0.tag
                         $0.presentationMode = .segueName(segueName: "RowsExampleViewControllerSegue", onDismiss: nil)
+                        $0.position = .first
                     }
 
                 <<< ButtonRow("Native iOS Event Form") { row in
@@ -107,19 +111,23 @@ class HomeViewController : FormViewController {
                 }
 
                 <<< ButtonRow("Swipe Actions") { (row: ButtonRow) -> Void in
-                  row.title = row.tag
-                  row.presentationMode = .segueName(segueName: "SwipeActionsControllerSegue", onDismiss: nil)
+                    row.title = row.tag
+                    row.presentationMode = .segueName(segueName: "SwipeActionsControllerSegue", onDismiss: nil)
                 }
 
                 <<< ButtonRow("Plain Table View Style") { (row: ButtonRow) in
                     row.title = row.tag
                     row.presentationMode = .segueName(segueName: "PlainTableViewStyleViewControllerSegue", onDismiss: nil)
+                    row.position = .last
+                    row.isHiddenLine = true
                 }
 
 
         +++ Section()
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
-                   row.title = "About"
+                    row.title = "About"
+                    row.position = .solo
+                    row.isHiddenLine = true
                 }
                 .onCellSelection { [weak self] (cell, row) in
                     self?.showAlert()

@@ -469,6 +469,8 @@ open class FormViewController: UIViewController, FormViewControllerProtocol, For
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = BaseRow.estimatedRowHeight
         tableView.allowsSelectionDuringEditing = true
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
 
     open override func viewWillAppear(_ animated: Bool) {

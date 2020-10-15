@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		225C38762537F18E00571967 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225C38752537F18E00571967 /* CustomCell.swift */; };
 		2837E2A01BA3A5A800A1952C /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837E29E1BA3A5A800A1952C /* FloatLabelTextField.swift */; };
 		284D28B61E49121E00BB38E7 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284D28B51E49121E00BB38E7 /* DatePickerCell.xib */; };
 		284D28B81E4917A000BB38E7 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284D28B71E4917A000BB38E7 /* SwitchCell.xib */; };
@@ -96,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		225C38752537F18E00571967 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		2837E29E1BA3A5A800A1952C /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FloatLabelTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		284D28B51E49121E00BB38E7 /* DatePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DatePickerCell.xib; path = Example/CustomDesign/DatePickerCell.xib; sourceTree = "<group>"; };
 		284D28B71E4917A000BB38E7 /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SwitchCell.xib; path = Example/CustomDesign/SwitchCell.xib; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				51729E6F1B9A660A004A00EB /* WeekDaysCell.xib */,
 				D4ACF9122074B52200AEA952 /* EmojiCell.xib */,
 				51729E6D1B9A6601004A00EB /* CustomCells.swift */,
+				225C38752537F18E00571967 /* CustomCell.swift */,
 			);
 			name = "Custom Row and Cell";
 			sourceTree = "<group>";
@@ -342,11 +345,13 @@
 				TargetAttributes = {
 					51729E191B9A54F1004A00EB = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = KLLPP6867R;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					51729E2D1B9A54F1004A00EB = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = KLLPP6867R;
 						LastSwiftMigration = 1020;
 						TestTargetID = 51729E191B9A54F1004A00EB;
 					};
@@ -427,6 +432,7 @@
 			files = (
 				8F32506B205AAF66006AF0A6 /* PlainTableViewExample.swift in Sources */,
 				8F325069205AAF1E006AF0A6 /* SwipeActionsController.swift in Sources */,
+				225C38762537F18E00571967 /* CustomCell.swift in Sources */,
 				51729E201B9A54F1004A00EB /* ViewController.swift in Sources */,
 				8F32505D205AAC68006AF0A6 /* FormatterExample.swift in Sources */,
 				51729E6E1B9A6601004A00EB /* CustomCells.swift in Sources */,
@@ -628,7 +634,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KLLPP6867R;
 				INFOPLIST_FILE = Example/Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -649,7 +655,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KLLPP6867R;
 				INFOPLIST_FILE = Example/Example/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -665,6 +671,7 @@
 		51729E3B1B9A54F1004A00EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = KLLPP6867R;
 				INFOPLIST_FILE = Example/UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -679,6 +686,7 @@
 		51729E3C1B9A54F1004A00EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = KLLPP6867R;
 				INFOPLIST_FILE = Example/UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
